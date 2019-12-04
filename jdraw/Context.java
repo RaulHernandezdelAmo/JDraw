@@ -3,7 +3,7 @@ package jdraw;
 
 import java.util.ArrayList;
 
-public class Context {
+public class Context{
     String penCollor;
     public ArrayList<String> htmlLines = new ArrayList<>();
     

@@ -25,7 +25,7 @@ public class Clear extends Command{
     
     @Override
     public void execute(String command){
-        Iterator itr = htmlLines.iterator(); 
+        Iterator itr = context.htmlLines.iterator(); 
         while (itr.hasNext()){
             itr.remove(); 
         } 

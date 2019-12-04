@@ -30,7 +30,7 @@ public class Undo extends Command{
     @Override
     public void execute(String command) {
         //vamos a coger el ultimo elemento del arraylist 
-        String last = htmlLines.get(htmlLines.size() - 1); 
-        htmlLines.remove(last);
+        String last = context.htmlLines.get(context.htmlLines.size() - 1); 
+        context.htmlLines.remove(last);
     }
 }

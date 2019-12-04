@@ -14,7 +14,6 @@ import jdraw.Command;
  */
 public class Circle extends Command{
     
-    
     @Override
     public void execute(String command){
         // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
@@ -22,7 +21,7 @@ public class Circle extends Command{
                         "       <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n" +
                         " </svg> "
                         + " ";
-        this.addHTMLLine(html);
+        context.addHTMLLine(html);
     }
     
     @Override

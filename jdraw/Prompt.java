@@ -19,9 +19,6 @@ public class Prompt {
     
      
     ArrayList<Command> myComs = new ArrayList<>();
-    ArrayList<String> htmlLines = new ArrayList<>();
-    
-   
     
     
     public void recMessages(){
@@ -52,12 +49,12 @@ public class Prompt {
             
                 for (Command myCom : myComs) {
                     if(!salir){
-                    System.out.println("Entra en el for" + myCom);
-                    boolean isYours = myCom.isYours(command);
-                    if(isYours){
-                        salir = true;
-                        myCom.execute(command);
-                    }
+                        System.out.println("Entra en el for" + myCom);
+                        boolean isYours = myCom.isYours(command);
+                        if(isYours){
+                            salir = true;
+                            myCom.execute(command);
+                        }
                         
                     }
                 }

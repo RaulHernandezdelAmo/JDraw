@@ -9,9 +9,10 @@ package jdraw;
  *
  * @author r.hernandezdel
  */
-public abstract class Command extends Context{
+public abstract class Command{
     
     public String command;
+    public Context context = new Context();
     
     public abstract boolean isYours(String command);
     

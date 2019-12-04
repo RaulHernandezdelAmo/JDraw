@@ -17,7 +17,7 @@ public class PenCollor extends Command{
     @Override
     public void execute(String command){
         //TODO: hacer que borre todo
-        this.setPencollor(command);
+        context.setPencollor(command);
     }
     
     @Override

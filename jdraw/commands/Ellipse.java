@@ -24,7 +24,7 @@ public class Ellipse extends Command{
                         "   <ellipse cx=\"200\" cy=\"80\" rx=\"100\" ry=\"50\"\n" +
                         "   style=\"fill:yellow;stroke:purple;stroke-width:2\" />\n" +
                         "</svg> ";
-        this.addHTMLLine(html);
+        context.addHTMLLine(html);
     }
     
     @Override
