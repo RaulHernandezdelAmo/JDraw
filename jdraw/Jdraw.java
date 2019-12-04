@@ -20,9 +20,9 @@ public class Jdraw {
         
         //Mostramos el mensaje de bienvenida
         
-        Circle circle = new Circle();
-        boolean aa = circle.isYours("circle 1");
-        System.out.println(aa);
+        //Circle circle = new Circle();
+        //boolean aa = circle.isYours("circle 1");
+        //System.out.println(aa);
         
         Prompt prompt = new Prompt();
         prompt.recMessages();

@@ -6,6 +6,7 @@
 package jdraw.commands;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import jdraw.Command;
 
 /**
@@ -15,15 +16,18 @@ import jdraw.Command;
 public class Clear extends Command{
     
     @Override
-    public void execute(String command){
-        //TODO: hacer que borre todo
-    }
-    
-    @Override
     public boolean isYours(String command){
         this.setCommand("clear");
         String[] command1 = command.split(" ");
         
         return Arrays.asList(command1).contains(this.command);
+    }
+    
+    @Override
+    public void execute(String command){
+        Iterator itr = htmlLines.iterator(); 
+        while (itr.hasNext()){
+            itr.remove(); 
+        } 
     }
 }

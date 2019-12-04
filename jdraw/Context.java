@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Context {
     String penCollor;
-    ArrayList<String> htmlLines = new ArrayList<>();
+    public ArrayList<String> htmlLines = new ArrayList<>();
     
     public void setPencollor(String penCollor){
         this.penCollor = penCollor;
@@ -16,11 +16,12 @@ public class Context {
     
     public void addHTMLLine(String html){
         //Supongo que aqui añadimos el html al arraylist
-        htmlLines.add(html);
+        this.htmlLines.add(html);
+        System.out.println(htmlLines);
     }
     
     public void writeHTMLLine(){
-        //TODO
+        //Aqui guardamos el htmlLines al fichero
     }
     
 }

@@ -24,4 +24,9 @@ public class Width extends Command{
         
         return Arrays.asList(command1).contains(this.command);
     }
+
+    @Override
+    public void execute(String command) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

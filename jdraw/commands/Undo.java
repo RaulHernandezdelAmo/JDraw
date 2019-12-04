@@ -26,4 +26,11 @@ public class Undo extends Command{
         
         return Arrays.asList(command1).contains(this.command);
     }
+
+    @Override
+    public void execute(String command) {
+        //vamos a coger el ultimo elemento del arraylist 
+        String last = htmlLines.get(htmlLines.size() - 1); 
+        htmlLines.remove(last);
+    }
 }

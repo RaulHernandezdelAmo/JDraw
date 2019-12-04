@@ -5,16 +5,10 @@
  */
 package jdraw;
 
-import jdraw.commands.PenCollor;
-import jdraw.commands.Width;
 import jdraw.commands.Ellipse;
-import jdraw.commands.Clear;
 import jdraw.commands.Rectangle;
-import jdraw.commands.Save;
-import jdraw.commands.Undo;
 import jdraw.commands.Circle;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -40,42 +34,46 @@ public class Prompt {
         //myComs.add(save);
         //myComs.size()
         //myComs.get(i)
-        
-        
+
+        boolean salir = false;
         this.welcomeMessage();
         Scanner S = new Scanner(System.in);
         String command = S.nextLine();
-        
-        //Ahora tenemos guardados los comandos
+        System.out.println("/**************************************/");
         System.out.println("Ha introducido: " + command);
-        
-        System.out.println("heeee" + myComs);
-        for (Command myCom : myComs) {
-            System.out.println("entra for 1");
-            System.out.println(myCom);
-            boolean isYours = false;
-            while(!isYours){
-                isYours = myCom.isYours(command);
-                System.out.println(isYours);
+        System.out.println("/**************************************/");
+
+        if(command.equals("salir")){
+            System.exit(0);
+        }else{
+            while(!salir){
+                
+                System.out.println("Entra en el while");
+            
+                for (Command myCom : myComs) {
+                    if(!salir){
+                    System.out.println("Entra en el for" + myCom);
+                    boolean isYours = myCom.isYours(command);
+                    if(isYours){
+                        salir = true;
+                        myCom.execute(command);
+                    }
+                        
+                    }
+                }
+                System.out.println("Slae del for ");
+                salir = true;
             }
         }
-        
-        for(Command obj:myComs){
-            System.out.println("entra for 2");
-            boolean isYours = false;
-            while(!isYours){
-                
-                //isYours = circle.isYours(command);
-            }  
-        }
-        
-            System.out.println("Sale");
+        this.recMessages();
     }
     
     public void welcomeMessage(){
         
+        System.out.println("/**************************************/");
         System.out.println("Bienvenido a JDraw"); 
         System.out.println("Introduzca los comandos: ");
+        System.out.println("/**************************************/");
     }
     
     public void writeHtml(){
