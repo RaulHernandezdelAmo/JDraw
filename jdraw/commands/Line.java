@@ -1,25 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import jdraw.Command;
 import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
-public class Circle extends Command{
+import java.io.IOException;
+import java.util.Arrays;
 
-    public Circle(Context context){
+public class Line extends Command {
+
+
+    public Line(Context context){
         this.context = context;
     }
 
@@ -64,16 +54,19 @@ public class Circle extends Command{
             w = 1;
         }
 
+
         String[] commandAux1 = command.split(",");
         String[] commandAux2 = commandAux1[0].split(" ");
+        System.out.println("aaa"+ Arrays.toString(commandAux2) + Arrays.toString(commandAux1));
+        System.out.println(commandAux2[1]+ commandAux1[1]+ commandAux1[2]);
 
-        // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
+        // info del codigo html = https://www.w3schools.com/graphics/svg_line.asp
         String html =   " " +
-                "<svg height=\"100\" width=\"100\">\n" +
-                "   <circle cx=\"" + commandAux2[1] + "\" cy=\"" + commandAux1[1] + "\" r=\"" + commandAux1[2] + "\"" +
+                " <svg height=\"210\" width=\"500\">\n" +
+                "   <line x1=\"" + commandAux2[1] + "\" y1=\"" + commandAux1[1] + "\" x2=\"" + commandAux1[2] + "\" y2=\"" + commandAux1[3] + "\" " +
                 "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                " </svg> " +
-                " ";
+                "</svg> " +
+                "";
         context.addHTMLLine(html);
         context.setPencolor(null);
         context.setFillcolor(null);
@@ -82,7 +75,7 @@ public class Circle extends Command{
 
     @Override
     public boolean isYours(String command){
-        this.setCommand("circle");
+        this.setCommand("line");
         String[] command1 = command.split(" ");
         System.out.println(Arrays.toString(command1));
 

@@ -8,13 +8,18 @@ package jdraw.commands;
 import java.util.Arrays;
 import java.util.Iterator;
 import jdraw.Command;
+import jdraw.Context;
 
 /**
  *
  * @author r.hernandezdel
  */
 public class Clear extends Command{
-    
+
+    public Clear(Context context) {
+        this.context = context;
+    }
+
     @Override
     public boolean isYours(String command){
         this.setCommand("clear");
@@ -25,9 +30,7 @@ public class Clear extends Command{
     
     @Override
     public void execute(String command){
-        Iterator itr = context.htmlLines.iterator(); 
-        while (itr.hasNext()){
-            itr.remove(); 
-        } 
+        context.htmlLines.clear();
+        System.out.println(context.htmlLines);
     }
 }

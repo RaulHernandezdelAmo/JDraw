@@ -5,8 +5,11 @@
  */
 package jdraw.commands;
 
+import java.io.IOException;
 import java.util.Arrays;
 import jdraw.Command;
+import jdraw.Context;
+import jdraw.Prompt;
 
 /**
  *
@@ -14,7 +17,9 @@ import jdraw.Command;
  */
 public class Save extends Command{
 
-    public void save(String command) {
+
+    public Save(Context context) {
+        this.context = context;
         System.out.println(command);
         //Aqui habra que guardar en el fichero
     }
@@ -28,8 +33,9 @@ public class Save extends Command{
     }
 
     @Override
-    public void execute(String command) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void execute(String command) throws IOException {
+        String html = "save";
+        context.addHTMLLine(html);
     }
     
 }

@@ -6,10 +6,7 @@
 package jdraw.commands;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import jdraw.Command;
 import jdraw.Context;
 
@@ -17,12 +14,12 @@ import jdraw.Context;
  *
  * @author r.hernandezdel
  */
-public class Circle extends Command{
+public class Rect extends Command{
 
-    public Circle(Context context){
+    public Rect(Context context){
         this.context = context;
     }
-
+    
     @Override
     public void execute(String command) throws IOException {
 
@@ -66,26 +63,27 @@ public class Circle extends Command{
 
         String[] commandAux1 = command.split(",");
         String[] commandAux2 = commandAux1[0].split(" ");
+        System.out.println("aaa"+ Arrays.toString(commandAux2) + Arrays.toString(commandAux1));
+        System.out.println(commandAux2[1]+ commandAux1[1]+ commandAux1[2]);
 
-        // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
+        // info del codigo html = https://www.w3schools.com/graphics/svg_rect.asp
         String html =   " " +
-                "<svg height=\"100\" width=\"100\">\n" +
-                "   <circle cx=\"" + commandAux2[1] + "\" cy=\"" + commandAux1[1] + "\" r=\"" + commandAux1[2] + "\"" +
+                "<svg width=\"400\" height=\"110\">\n" +
+                "   <rect x=\"" + commandAux2[1] + "\" y=\"" + commandAux1[1] + "\" width=\"" + commandAux1[2] + "\" height=\"" + commandAux1[3] + "\"" +
                 "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                " </svg> " +
-                " ";
+                "</svg> " +
+                "";
         context.addHTMLLine(html);
         context.setPencolor(null);
         context.setFillcolor(null);
         context.setWidth(null);
     }
-
+    
     @Override
     public boolean isYours(String command){
-        this.setCommand("circle");
+        this.setCommand("rect");
         String[] command1 = command.split(" ");
-        System.out.println(Arrays.toString(command1));
-
+        
         return Arrays.asList(command1).contains(this.command);
     }
 }

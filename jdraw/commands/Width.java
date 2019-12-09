@@ -7,16 +7,14 @@ package jdraw.commands;
 
 import java.util.Arrays;
 import jdraw.Command;
+import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
 public class Width extends Command{
-    public void setWidth(String command){
-        System.out.println(command);
+
+    public Width(Context context) {
+        this.context = context;
     }
-    
+
     @Override
     public boolean isYours(String command){
         this.setCommand("width");
@@ -27,6 +25,6 @@ public class Width extends Command{
 
     @Override
     public void execute(String command) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        context.setWidth(command);
     }
 }

@@ -13,26 +13,23 @@ import jdraw.Context;
  *
  * @author r.hernandezdel
  */
-public class Undo extends Command{
+public class PenColor extends Command{
 
-    public Undo(Context context) {
+    public PenColor(Context context) {
         this.context = context;
     }
 
     @Override
+    public void execute(String command){
+        context.setPencolor(command);
+    }
+    
+    @Override
     public boolean isYours(String command){
-        this.setCommand("undo");
+        this.setCommand("pencolor");
         String[] command1 = command.split(" ");
         
         return Arrays.asList(command1).contains(this.command);
     }
-
-    @Override
-    public void execute(String command) {
-        //vamos a coger el ultimo elemento del arraylist
-        if (context.htmlLines.size() > 0){
-            String last = context.htmlLines.get(context.htmlLines.size() - 1);
-            context.htmlLines.remove(last);
-        }
-    }
+            
 }

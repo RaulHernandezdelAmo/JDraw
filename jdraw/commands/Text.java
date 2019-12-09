@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import jdraw.Command;
 import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
-public class Circle extends Command{
+import java.io.IOException;
+import java.util.Arrays;
 
-    public Circle(Context context){
+public class Text extends Command {
+
+    public Text(Context context){
         this.context = context;
     }
 
@@ -66,13 +55,15 @@ public class Circle extends Command{
 
         String[] commandAux1 = command.split(",");
         String[] commandAux2 = commandAux1[0].split(" ");
+        System.out.println("aaa"+ Arrays.toString(commandAux2) + Arrays.toString(commandAux1));
+        System.out.println(commandAux2[1]+ commandAux1[1]+ commandAux1[2]);
 
-        // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
+        // info del codigo html = https://www.w3schools.com/graphics/svg_text.asp
         String html =   " " +
-                "<svg height=\"100\" width=\"100\">\n" +
-                "   <circle cx=\"" + commandAux2[1] + "\" cy=\"" + commandAux1[1] + "\" r=\"" + commandAux1[2] + "\"" +
-                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                " </svg> " +
+                "<svg height=\"30\" width=\"200\">\n" +
+                "  <text x=\"" + commandAux2[1] + "\" y=\"" + commandAux1[1] + "\" fill=\"red\">" + commandAux1[2] + "" +
+                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" </text>\n" +
+                "</svg>  "+
                 " ";
         context.addHTMLLine(html);
         context.setPencolor(null);
@@ -82,7 +73,7 @@ public class Circle extends Command{
 
     @Override
     public boolean isYours(String command){
-        this.setCommand("circle");
+        this.setCommand("text");
         String[] command1 = command.split(" ");
         System.out.println(Arrays.toString(command1));
 
