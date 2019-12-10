@@ -9,12 +9,12 @@ import java.util.Scanner;
 public class Prompt {
     
     //Arraylist para recorrer todos los comandos en el for del recMessages
-    ArrayList<Command> myComs = new ArrayList<>();
+    private ArrayList<Command> myComs = new ArrayList<>();
     //Este arrayList sirve para guardar en el fichero los diferentes comandos introducidos
-    public ArrayList<String> comandosIntroducidos = new ArrayList<>();
+    public static ArrayList<String> comandosIntroducidos = new ArrayList<>();
     
     
-    public void recMessages() throws IOException {
+    public void recMessages(String command) throws IOException {
 
         Context context = new Context();
 
@@ -23,6 +23,7 @@ public class Prompt {
         myComs.add(new Ellipse(context));
         myComs.add(new Rect(context));
         myComs.add(new Save(context));
+        myComs.add(new Load(context));
         myComs.add(new Undo(context));
         myComs.add(new Clear(context));
         myComs.add(new Line(context));
@@ -30,20 +31,24 @@ public class Prompt {
         myComs.add(new PenColor(context));
         myComs.add(new FillColor(context));
         myComs.add(new Width(context));
-        
-        boolean salir = false;
-        this.welcomeMessage();
+
         Scanner S = new Scanner(System.in);
-        String command = S.nextLine();
+
+        boolean repetir = false;
+        if (command.equals("")){
+            this.welcomeMessage();
+            command = S.nextLine();
+            repetir = true;
+        }
+        boolean salir = false;
 
         if(command.equals("salir")){
             System.out.println("¿Desea salir de la aplicación? Y/N");
             String terminarPrograma = S.nextLine();
             if(terminarPrograma.equals("Y")){
-                //System.out.println(comandosIntroducidos);
                 System.exit(0);
             }else{  
-                this.recMessages();
+                this.recMessages("");
             }
         }else{
             while(!salir){
@@ -60,8 +65,10 @@ public class Prompt {
                 salir = true;
             }
         }
-        //Hacemos que se llame recursivamente hasta que el usuario introduzca el comando salir
-        this.recMessages();
+        if (repetir){
+            //Hacemos que se llame recursivamente hasta que el usuario introduzca el comando salir
+            this.recMessages("");
+        }
     }
     
     public void welcomeMessage(){

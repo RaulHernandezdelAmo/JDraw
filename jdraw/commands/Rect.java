@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
 
 import java.io.IOException;
@@ -10,13 +5,9 @@ import java.util.Arrays;
 import jdraw.Command;
 import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
 public class Rect extends Command{
 
-    public Rect(Context context){
+    public Rect(Context context) throws IOException{
         this.context = context;
     }
     
@@ -35,7 +26,7 @@ public class Rect extends Command{
             penrgb = pr+", "+pg+", "+pb;
         }else{
             po = 1;
-            penrgb = "100, 0, 0, 0";
+            penrgb = "100, 0, 0";
         }
 
         int fo, fr, fg, fb;
@@ -50,7 +41,7 @@ public class Rect extends Command{
             fillrgb = fr+", "+fg+", "+fb;
         }else{
             fo = 0;
-            fillrgb = "0, 0, 0, 0";
+            fillrgb = "0, 0, 0";
         }
 
         int w;
@@ -66,10 +57,8 @@ public class Rect extends Command{
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_rect.asp
         String html =   " " +
-                "<svg width=\"400\" height=\"110\">\n" +
                 "   <rect x=\"" + commandAux2[1] + "\" y=\"" + commandAux1[1] + "\" width=\"" + commandAux1[2] + "\" height=\"" + commandAux1[3] + "\"" +
                 "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                "</svg> " +
                 "";
         context.addHTMLLine(html);
         context.setPencolor(null);

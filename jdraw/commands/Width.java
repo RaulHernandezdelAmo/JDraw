@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
 
+import java.io.IOException;
 import java.util.Arrays;
 import jdraw.Command;
 import jdraw.Context;
 
 public class Width extends Command{
 
-    public Width(Context context) {
+    public Width(Context context) throws IOException {
         this.context = context;
     }
 

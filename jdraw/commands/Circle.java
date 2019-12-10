@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import jdraw.Command;
 import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
+import java.io.IOException;
+import java.util.Arrays;
+
 public class Circle extends Command{
 
-    public Circle(Context context){
+    public Circle(Context context) throws IOException{
         this.context = context;
     }
 
@@ -38,7 +27,7 @@ public class Circle extends Command{
             penrgb = pr+", "+pg+", "+pb;
         }else{
             po = 1;
-            penrgb = "100, 0, 0, 0";
+            penrgb = "100, 0, 0";
         }
 
         int fo, fr, fg, fb;
@@ -53,7 +42,7 @@ public class Circle extends Command{
             fillrgb = fr+", "+fg+", "+fb;
         }else{
             fo = 0;
-            fillrgb = "0, 0, 0, 0";
+            fillrgb = "0, 0, 0";
         }
 
         int w;
@@ -69,11 +58,9 @@ public class Circle extends Command{
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
         String html =   " " +
-                "<svg height=\"1024\" width=\"1024\">\n" +
                 "   <circle cx=\"" + commandAux2[1] + "\" cy=\"" + commandAux1[1] + "\" r=\"" + commandAux1[2] + "\"" +
-                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                " </svg> " +
-                " ";
+                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n";
+
         context.addHTMLLine(html);
         context.setPencolor(null);
         context.setFillcolor(null);

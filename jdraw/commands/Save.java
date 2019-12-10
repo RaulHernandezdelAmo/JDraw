@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
 
-import java.io.IOException;
-import java.util.Arrays;
 import jdraw.Command;
 import jdraw.Context;
-import jdraw.Prompt;
 
-/**
- *
- * @author r.hernandezdel
- */
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+
+import static jdraw.Prompt.comandosIntroducidos;
+
 public class Save extends Command{
 
 
-    public Save(Context context) {
+    public Save(Context context) throws IOException{
         this.context = context;
-        //System.out.println(command);  //Esto hay que borrarlo despues
-        //Aqui habra que guardar en el fichero
     }
     
     @Override
@@ -34,8 +27,25 @@ public class Save extends Command{
 
     @Override
     public void execute(String command) throws IOException {
-        String html = "save";
-        context.addHTMLLine(html);
+        String[] commandAux = command.split(" ");
+        String file;
+        if (commandAux.length > 1){
+            file = commandAux[1];
+        }else{
+            file = "Commands.txt";
+        }
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (String comando : comandosIntroducidos) {
+                String[] comandoAux = comando.split(" ");
+                if (!comandoAux[0].equals("save") && !comandoAux[0].equals("load")){
+                    bw.write(comando);
+                    bw.newLine();
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("No se ha podido guardar en fichero.");
+        }
     }
     
 }

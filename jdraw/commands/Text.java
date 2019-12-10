@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Text extends Command {
 
-    public Text(Context context){
+    public Text(Context context) throws IOException{
         this.context = context;
     }
 
@@ -27,7 +27,7 @@ public class Text extends Command {
             penrgb = pr+", "+pg+", "+pb;
         }else{
             po = 1;
-            penrgb = "100, 0, 0, 0";
+            penrgb = "100, 0, 0";
         }
 
         int fo, fr, fg, fb;
@@ -42,7 +42,7 @@ public class Text extends Command {
             fillrgb = fr+", "+fg+", "+fb;
         }else{
             fo = 0;
-            fillrgb = "0, 0, 0, 0";
+            fillrgb = "0, 0, 0";
         }
 
         int w;
@@ -58,10 +58,8 @@ public class Text extends Command {
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_text.asp
         String html =   " " +
-                "<svg height=\"30\" width=\"200\">\n" +
-                "  <text x=\"" + commandAux2[1] + "\" y=\"" + commandAux1[1] + "\" fill=\"red\">" + commandAux1[2] + "" +
-                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" </text>\n" +
-                "</svg>  "+
+                "  <text x=\"" + commandAux2[1] + "\" y=\"" + commandAux1[1] + "\" "+
+                "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\">" + commandAux1[2] + "</text>\n" +
                 " ";
         context.addHTMLLine(html);
         context.setPencolor(null);

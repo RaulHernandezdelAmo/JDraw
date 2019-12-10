@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Context{
+
+
+    private File file = File.createTempFile("jdraw_tmp_file", ".html");
+    String fileName = file.getAbsolutePath();
 
     private String penColor = null;
     private String fillColor = null;
@@ -16,37 +19,51 @@ public class Context{
 
     public ArrayList<String> htmlLines = new ArrayList<>();
 
+    public Context() throws IOException {
+    }
+
     public void addHTMLLine(String html) throws IOException {
         //Aqui añadimos el html al arraylist
 
-        if (html.equals("save")){
-            this.writeHTMLLine(this.htmlLines);
-        }
-        htmlLines.add(html);
+        this.htmlLines.add(html);
+        this.writeHTMLLine(this.htmlLines);
     }
     
     private void writeHTMLLine(ArrayList<String> htmlLines) throws IOException {
 
-/*
-        String htmlHeading = "" +
-                " <html>" +
-                "   <head>" +
-                "       <meta charset = \"UTF-8\"/>" +
-                "       <meta http-equiv = \"refresh\" content = \"2\"/>                            " +
-                "   </head>" +
-                "" +
-                "   <body>" ;
 
-        File file = File.createTempFile("jdraw_tmp_file", "html");
-        String fileName = file.getAbsolutePath();
+        String htmlHeading = "" +
+                " <html>\n" +
+                "   <head>\n" +
+                "       <meta charset = \"UTF-8\"/>\n" +
+                "       <meta http-equiv = \"refresh\" content = \"2\"/>\n" +
+                "   </head>\n" +
+                "\n" +
+                "   <body>\n" +
+                "       <svg height=\"1024\" width=\"1024\">\n" ;
+
+        String htmlEnd = "" +
+                "       </svg>\n" +
+                "   </body>\n" +
+                "</html>\n";
 
         RandomAccessFile rfile = new RandomAccessFile(file, "rw");
-        rfile.writeChars("");
+        rfile.writeChars(htmlHeading);
+
+        for (String htmlLine : htmlLines) {
+            rfile.writeChars(htmlLine);
+        }
+
+        rfile.writeChars(htmlEnd);
         rfile.close();
 
         Desktop desktop = Desktop.getDesktop();
         desktop.browse(URI.create(String.valueOf(file.toURI())));
-*/
+
+    }
+
+    public String getPencolor(){
+        return this.penColor;
     }
 
     public void setPencolor(String penColor){
@@ -57,10 +74,6 @@ public class Context{
             String[] penColorAux2 = penColorAux1[0].split(" ");
             this.penColor = penColorAux2[1] + penColorAux1[1] + penColorAux1[2] + penColorAux1[3];
         }
-    }
-
-    public String getPencolor(){
-        return this.penColor;
     }
 
     public String getFillColor() {

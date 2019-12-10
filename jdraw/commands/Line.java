@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Line extends Command {
 
 
-    public Line(Context context){
+    public Line(Context context) throws IOException{
         this.context = context;
     }
 
@@ -28,7 +28,7 @@ public class Line extends Command {
             penrgb = pr+", "+pg+", "+pb;
         }else{
             po = 1;
-            penrgb = "100, 0, 0, 0";
+            penrgb = "100, 0, 0";
         }
 
         int fo, fr, fg, fb;
@@ -43,7 +43,7 @@ public class Line extends Command {
             fillrgb = fr+", "+fg+", "+fb;
         }else{
             fo = 0;
-            fillrgb = "0, 0, 0, 0";
+            fillrgb = "0, 0, 0";
         }
 
         int w;
@@ -60,10 +60,8 @@ public class Line extends Command {
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_line.asp
         String html =   " " +
-                " <svg height=\"210\" width=\"500\">\n" +
                 "   <line x1=\"" + commandAux2[1] + "\" y1=\"" + commandAux1[1] + "\" x2=\"" + commandAux1[2] + "\" y2=\"" + commandAux1[3] + "\" " +
                 "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
-                "</svg> " +
                 "";
         context.addHTMLLine(html);
         context.setPencolor(null);

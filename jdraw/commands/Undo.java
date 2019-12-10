@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jdraw.commands;
 
+import java.io.IOException;
 import java.util.Arrays;
 import jdraw.Command;
 import jdraw.Context;
 
-/**
- *
- * @author r.hernandezdel
- */
 public class Undo extends Command{
 
-    public Undo(Context context) {
+    public Undo(Context context) throws IOException {
         this.context = context;
     }
 
@@ -28,11 +20,12 @@ public class Undo extends Command{
     }
 
     @Override
-    public void execute(String command) {
+    public void execute(String command) throws IOException {
         //vamos a coger el ultimo elemento del arraylist
         if (context.htmlLines.size() > 0){
             String last = context.htmlLines.get(context.htmlLines.size() - 1);
             context.htmlLines.remove(last);
+            context.addHTMLLine("");
         }
     }
 }
