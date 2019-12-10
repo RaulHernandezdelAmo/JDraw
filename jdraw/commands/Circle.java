@@ -69,7 +69,7 @@ public class Circle extends Command{
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_circle.asp
         String html =   " " +
-                "<svg height=\"100\" width=\"100\">\n" +
+                "<svg height=\"1024\" width=\"1024\">\n" +
                 "   <circle cx=\"" + commandAux2[1] + "\" cy=\"" + commandAux1[1] + "\" r=\"" + commandAux1[2] + "\"" +
                 "   stroke-width=\"" + w + "\" fill=\"rgb("+ fillrgb +")\" fill-opacity=\""+fo+"\" stroke=\"rgb("+penrgb+")\" stroke-opacity=\""+po+"\" />\n" +
                 " </svg> " +
@@ -84,7 +84,6 @@ public class Circle extends Command{
     public boolean isYours(String command){
         this.setCommand("circle");
         String[] command1 = command.split(" ");
-        System.out.println(Arrays.toString(command1));
 
         return Arrays.asList(command1).contains(this.command);
     }

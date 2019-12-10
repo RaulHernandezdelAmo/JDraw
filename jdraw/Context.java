@@ -23,13 +23,10 @@ public class Context{
             this.writeHTMLLine(this.htmlLines);
         }
         htmlLines.add(html);
-        System.out.println(this.htmlLines);
     }
     
     private void writeHTMLLine(ArrayList<String> htmlLines) throws IOException {
 
-        System.out.println("Entra en writeHTML");
-        System.out.println("htmlLines: ");
 /*
         String htmlHeading = "" +
                 " <html>" +
@@ -58,7 +55,6 @@ public class Context{
         }else{
             String[] penColorAux1 = penColor.split(",");
             String[] penColorAux2 = penColorAux1[0].split(" ");
-            System.out.println("El pencolor es:  "+penColorAux2[1] + penColorAux1[1] + penColorAux1[2] + penColorAux1[3]);
             this.penColor = penColorAux2[1] + penColorAux1[1] + penColorAux1[2] + penColorAux1[3];
         }
     }
@@ -77,7 +73,6 @@ public class Context{
         }else{
             String[] fillColorAux1 = fillColor.split(",");
             String[] fillColorAux2 = fillColorAux1[0].split(" ");
-            System.out.println("El fillcolor es:  "+fillColorAux2[1] + fillColorAux1[1] + fillColorAux1[2] + fillColorAux1[3]);
             this.fillColor = fillColorAux2[1] + fillColorAux1[1] + fillColorAux1[2] + fillColorAux1[3];
         }
     }
@@ -91,7 +86,6 @@ public class Context{
             this.width = null;
         }else{
             String[] widthAux1 = width.split(" ");
-            System.out.println("El width es:  "+ widthAux1[1]);
             this.width = widthAux1[1];
         }
     }

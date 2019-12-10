@@ -31,6 +31,5 @@ public class Clear extends Command{
     @Override
     public void execute(String command){
         context.htmlLines.clear();
-        System.out.println(context.htmlLines);
     }
 }

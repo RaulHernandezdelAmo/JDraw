@@ -20,7 +20,7 @@ public class Save extends Command{
 
     public Save(Context context) {
         this.context = context;
-        System.out.println(command);
+        //System.out.println(command);  //Esto hay que borrarlo despues
         //Aqui habra que guardar en el fichero
     }
     

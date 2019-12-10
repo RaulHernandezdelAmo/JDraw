@@ -1,8 +1,4 @@
-package jdraw;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package jdraw;
 
 import jdraw.commands.*;
 
@@ -10,15 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author r.hernandezdel
- */
 public class Prompt {
     
-     
+    //Arraylist para recorrer todos los comandos en el for del recMessages
     ArrayList<Command> myComs = new ArrayList<>();
-    //Esto lo usaremos para guardar los comandos en el txt
+    //Este arrayList sirve para guardar en el fichero los diferentes comandos introducidos
     public ArrayList<String> comandosIntroducidos = new ArrayList<>();
     
     
@@ -26,6 +18,7 @@ public class Prompt {
 
         Context context = new Context();
 
+        //Metemos en el arrayList todos los comandos para recorrerlos con el for
         myComs.add(new Circle(context));
         myComs.add(new Ellipse(context));
         myComs.add(new Rect(context));
@@ -37,55 +30,43 @@ public class Prompt {
         myComs.add(new PenColor(context));
         myComs.add(new FillColor(context));
         myComs.add(new Width(context));
-
-        //myComs.add(save);
-        //myComs.size()
-        //myComs.get(i)
-
+        
         boolean salir = false;
         this.welcomeMessage();
         Scanner S = new Scanner(System.in);
         String command = S.nextLine();
-        System.out.println("/**************************************/");
-        System.out.println("Ha introducido: " + command);
-        System.out.println("/**************************************/");
 
         if(command.equals("salir")){
-            System.out.println(comandosIntroducidos);
-            System.exit(0);
+            System.out.println("¿Desea salir de la aplicación? Y/N");
+            String terminarPrograma = S.nextLine();
+            if(terminarPrograma.equals("Y")){
+                //System.out.println(comandosIntroducidos);
+                System.exit(0);
+            }else{  
+                this.recMessages();
+            }
         }else{
             while(!salir){
-                
-                System.out.println("Entra en el while");
-            
                 for (Command myCom : myComs) {
                     if(!salir){
-                        System.out.println("Entra en el for" + myCom);
                         boolean isYours = myCom.isYours(command);
                         if(isYours){
                             comandosIntroducidos.add(command);
                             salir = true;
                             myCom.execute(command);
                         }
-                        
                     }
                 }
-                System.out.println("Slae del for ");
                 salir = true;
             }
         }
+        //Hacemos que se llame recursivamente hasta que el usuario introduzca el comando salir
         this.recMessages();
     }
     
     public void welcomeMessage(){
-        
         System.out.println("/**************************************/");
-        System.out.println("Bienvenido a JDraw"); 
-        System.out.println("Introduzca los comandos: ");
-        System.out.println("/**************************************/");
+        System.out.println("Introduzca el comando: ");
     }
     
-    public void writeHtml(){
-        
-    }
 }

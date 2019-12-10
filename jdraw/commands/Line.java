@@ -57,8 +57,6 @@ public class Line extends Command {
 
         String[] commandAux1 = command.split(",");
         String[] commandAux2 = commandAux1[0].split(" ");
-        System.out.println("aaa"+ Arrays.toString(commandAux2) + Arrays.toString(commandAux1));
-        System.out.println(commandAux2[1]+ commandAux1[1]+ commandAux1[2]);
 
         // info del codigo html = https://www.w3schools.com/graphics/svg_line.asp
         String html =   " " +
@@ -77,7 +75,6 @@ public class Line extends Command {
     public boolean isYours(String command){
         this.setCommand("line");
         String[] command1 = command.split(" ");
-        System.out.println(Arrays.toString(command1));
 
         return Arrays.asList(command1).contains(this.command);
     }
